@@ -166,6 +166,52 @@
   100% { opacity:1; }
 }
 </style>
+<!-- Motivational Animated Text -->
+<div class="text-center my-4" style="font-size:1.6rem; font-weight:bold; color:#41a7fa;">
+  <span class="animated-message" id="msg1">Never did a problem look so interesting to solve!</span>
+  <span class="animated-message" id="msg2" style="display:none;">Come, Collaborate, Co-Create...</span>
+  <span class="animated-message" id="msg3" style="display:none;">...and Solve the CPS Challenge together!</span>
+</div>
+
+<style>
+.animated-message {
+  transition: opacity 0.8s, transform 0.8s;
+  opacity: 0;
+  transform: translateY(20px);
+  position: absolute;
+  left: 0; right: 0; margin: auto;
+  width: 100%;
+}
+.animated-message.active {
+  opacity: 1;
+  transform: translateY(0);
+  position:relative;
+}
+</style>
+
+<script>
+// Animate text sequence
+const messages = [
+  document.getElementById('msg1'),
+  document.getElementById('msg2'),
+  document.getElementById('msg3')
+];
+let activeIndex = 0;
+
+function showNextMessage() {
+  messages.forEach((msg, i) => {
+    msg.style.display = i === activeIndex ? 'inline' : 'none';
+    msg.classList.toggle('active', i === activeIndex);
+  });
+  activeIndex = (activeIndex + 1) % messages.length;
+  setTimeout(showNextMessage, 2600);
+}
+
+// Start animation after page loads
+window.addEventListener('DOMContentLoaded', () => {
+  showNextMessage();
+});
+</script>
 
 
     <!-- Hero Section -->
